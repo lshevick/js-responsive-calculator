@@ -11,21 +11,25 @@
 
     let i = 0;
 
+    const calculation = [];
+
+
     pushNumber();
     pushOperator();
     calculate();
 
     
     $plusMinus.addEventListener('click', () => {
-        console.log(`${$plusMinus.value}`);
+        console.log(`${$plusMinus.innerHTML}`);
     })
     $percent.addEventListener('click', () => {
-        console.log(`${$percent.value}`);
+        console.log(`${$percent.innerHTML}`);
     })    
 
     function calculate() {
         $equals.addEventListener('click', () => {
-            console.log(`${$equals.innerHTML}`);
+            console.log(calculation);
+
         })
     }
    
@@ -36,7 +40,9 @@
 
     for (let i = 0; i < $operators.length; i++){
         $operators[i].addEventListener('click', () => {
-            console.log(`${$operators[i].value}`);
+            // console.log(`${$operators[i].innerHTML}`);
+            calculation.push(`${$operators[i].innerHTML}`);
+
         });
         }
     };
@@ -44,7 +50,9 @@
     function pushNumber() {
     for (let i = 0; i < $numbers.length; i++){
         $numbers[i].addEventListener('click', () => { 
-            console.log(`${$numbers[i].value}`);
+            // console.log(`${$numbers[i].innerHTML}`);
+            calculation.push(`${$numbers[i].innerHTML}`);
+            console.log(calculation);
         });
         }
     };
