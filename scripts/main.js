@@ -12,8 +12,8 @@
     const $decimal = document.querySelector('.decimal');
 
     let i = 0;
-    let prevNum = [];
     let currentNum = [];
+    let prevNum = [];
     let calculation = [];
     let result = 0;
     let operator;
@@ -23,11 +23,11 @@
     pushOperator();
 
     $equals.onclick = function () {
-        calculation.push(prevNum);
+        calculation.push(currentNum);
         calculation.flat();
         console.log(calculation.flat());
-        let num1 = prevNum.join('');
-        let num2 = currentNum.join('');
+        let num1 = currentNum.join('');
+        let num2 = prevNum.join('');
         switch (operator) {
             case '+':
                 result = parseFloat(num2) + parseFloat(num1);
@@ -42,22 +42,22 @@
                 result = parseFloat(num2) * parseFloat(num1);
                 break;
             default:
-                result = currentNum;
+                result = prevNum;
         }
-        prevNum = [];
-        prevNum.push(result);
+        currentNum = [];
+        currentNum.push(result);
         console.log(calculation);
         console.log(result);
         $screen.value = result;
-        currentNum = [];
+        prevNum = [];
         calculation = [];
     }
 
     function pushOperator() {
 
         $clear.onclick = () => {
-            prevNum = [];
             currentNum = [];
+            prevNum = [];
             result = [];
             calculation = [];
             $screen.value = 0;
@@ -69,10 +69,10 @@
         for (let i = 0; i < $operators.length; i++) {
             $operators[i].onclick = () => {
                 operator = $operators[i].value;
-                currentNum = prevNum;
-                prevNum = [];
+                prevNum = currentNum;
+                currentNum = [];
                 console.log('changed Nums!');
-                calculation.push(currentNum, $operators[i].value);
+                calculation.push(prevNum, $operators[i].value);
                 console.log($operators[i].value, 'pushed to calc');
             }
         }
@@ -81,22 +81,22 @@
     function pushNumber() {
         for (let i = 0; i < $numbers.length; i++) {
             $numbers[i].onclick = () => {
-                prevNum.push($numbers[i].value);
-                $screen.value = prevNum.join('');
-                console.log(currentNum);
+                currentNum.push($numbers[i].value);
+                $screen.value = currentNum.join('');
                 console.log(prevNum);
+                console.log(currentNum);
             }
         }
     };
 
     $plusMinus.onclick = () => {
-        if (!prevNum.includes('-')) {
-            prevNum.unshift('-')
-            $screen.value = prevNum.join('');
+        if (!currentNum.includes('-')) {
+            currentNum.unshift('-')
+            $screen.value = currentNum.join('');
             console.log('negative!');
         } else {
-            prevNum.shift('-');
-            $screen.value = prevNum.join('');
+            currentNum.shift('-');
+            $screen.value = currentNum.join('');
             console.log('positive!');
             return;
         }
@@ -104,12 +104,19 @@
 
 
     $decimal.onclick = () => {
-        if (!prevNum.includes('.')) {
-            prevNum.push('.');
-            $screen.value = prevNum.join('');
+        if (!currentNum.includes('.')) {
+            currentNum.push('.');
+            $screen.value = currentNum.join('');
         } else {
             return;
         }
+    }
+
+    $percent.onclick = () => {
+        currentNum = parseFloat(currentNum) / 100;
+        $screen.value = currentNum;
+        currentNum = Array.from(String(currentNum));
+        console.log(currentNum);
     }
 
 })();
