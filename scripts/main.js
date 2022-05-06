@@ -24,9 +24,26 @@
     $equals.onclick = function () {
         calculation.push(prevNum);
         calculation.flat();
-        prevNum.join('');
-        currentNum.join('');
-        console.log(calculation.join(''));
+        console.log(calculation.flat());
+        let num1 = prevNum.join('');
+        let num2 = currentNum.join('');
+        switch (operator) {
+            case '+':
+                result = parseFloat(num2) + parseFloat(num1);
+                break;
+            case '-':
+                result = parseFloat(num2) - parseFloat(num1);
+                break;
+            case '/':
+                result = parseFloat(num2) / parseFloat(num1);
+                break;
+            case '*':
+                result = parseFloat(num2) * parseFloat(num1);
+                break;
+        }
+
+        console.log(result);
+        $screen.value = result;
     }
 
         function pushOperator() {
@@ -44,14 +61,12 @@
 
             for (let i = 0; i < $operators.length; i++) {
                 $operators[i].onclick = () => {
-                    if (!calculation.includes(currentNum, $operators[i].value))  {
+                        operator = $operators[i].value;
                         currentNum = prevNum;
                         prevNum = [];
                         console.log('changed Nums!');
                         calculation.push(currentNum, $operators[i].value);
                         console.log($operators[i].value, 'pushed to calc');
-                    } else {
-                    }
                 }
             }
         };
@@ -61,7 +76,7 @@
                 $numbers[i].onclick = () => { 
                     prevNum.push($numbers[i].value);
                     $screen.value = prevNum.join('');
-                    if (calculation.includes(currentNum)) {
+                    if (!result) {
                         $screen.value = 0;
                     };
             console.log(currentNum);
