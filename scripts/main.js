@@ -104,7 +104,12 @@
 
 
     $decimal.onclick = () => {
-
+        if (!prevNum.includes('.')) {
+            prevNum.push('.');
+            $screen.value = prevNum.join('');
+        } else {
+            return;
+        }
     }
 
 })();
