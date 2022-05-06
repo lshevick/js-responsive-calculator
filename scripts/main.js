@@ -68,12 +68,14 @@
 
         for (let i = 0; i < $operators.length; i++) {
             $operators[i].onclick = () => {
+                if (!calculation.includes($operators[i].value)) {
                 operator = $operators[i].value;
                 prevNum = currentNum;
                 currentNum = [];
                 console.log('changed Nums!');
-                calculation.push(prevNum, $operators[i].value);
+                 calculation.push(prevNum, $operators[i].value);
                 console.log($operators[i].value, 'pushed to calc');
+                };
             }
         }
     };
@@ -81,6 +83,7 @@
     function pushNumber() {
         for (let i = 0; i < $numbers.length; i++) {
             $numbers[i].onclick = () => {
+                (result) ? result = 0 : null;
                 currentNum.push($numbers[i].value);
                 $screen.value = currentNum.join('');
                 console.log(prevNum);

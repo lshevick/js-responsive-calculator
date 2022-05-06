@@ -59,3 +59,19 @@ button:focus {
 .btn-lg {
   grid-column: 1 / 3;
 }
+
+
+.number:active {
+  background-color: #797877;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px inset;
+}
+
+.operator:active, .equal-sign:active {
+  background-color: #dc8800;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px inset;
+}
+
+.clear:active, .plus-minus:active, .percent:active {
+  background-color: #616161;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px inset;
+}
