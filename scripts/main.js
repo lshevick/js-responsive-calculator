@@ -9,6 +9,7 @@
     const $plusMinus = document.querySelector('.plus-minus');
     const $percent = document.querySelector('.percent');
     const $equals = document.querySelector('.equal-sign');
+    const $decimal = document.querySelector('.decimal');
 
     let i = 0;
     let prevNum = [];
@@ -82,14 +83,28 @@
             $numbers[i].onclick = () => {
                 prevNum.push($numbers[i].value);
                 $screen.value = prevNum.join('');
-                // if (result) {
-                //     result = 0;
-                //     $screen.value = 0;
-                // };
                 console.log(currentNum);
                 console.log(prevNum);
             }
         }
     };
+
+    $plusMinus.onclick = () => {
+        if (!prevNum.includes('-')) {
+            prevNum.unshift('-')
+            $screen.value = prevNum.join('');
+            console.log('negative!');
+        } else {
+            prevNum.shift('-');
+            $screen.value = prevNum.join('');
+            console.log('positive!');
+            return;
+        }
+    };
+
+
+    $decimal.onclick = () => {
+
+    }
 
 })();
