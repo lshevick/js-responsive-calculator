@@ -14,7 +14,7 @@
     let prevNum = [];
     let currentNum = [];
     let calculation = [];
-    let result = [12];
+    let result = 0;
     let operator;
     
     
@@ -30,20 +30,32 @@
         switch (operator) {
             case '+':
                 result = parseFloat(num2) + parseFloat(num1);
+                prevNum = [];
+                prevNum.push(result);
                 break;
             case '-':
                 result = parseFloat(num2) - parseFloat(num1);
+                prevNum = [];
+                prevNum.push(result);
                 break;
             case '/':
                 result = parseFloat(num2) / parseFloat(num1);
+                prevNum = [];
+                prevNum.push(result);
                 break;
             case '*':
                 result = parseFloat(num2) * parseFloat(num1);
+                prevNum = [];
+                prevNum.push(result);
                 break;
-        }
-
+            default: 
+                result = currentNum;
+            }
+            console.log(calculation);
         console.log(result);
         $screen.value = result;
+        currentNum = [];
+        calculation = [];
     }
 
         function pushOperator() {
@@ -76,9 +88,10 @@
                 $numbers[i].onclick = () => { 
                     prevNum.push($numbers[i].value);
                     $screen.value = prevNum.join('');
-                    if (!result) {
-                        $screen.value = 0;
-                    };
+                    // if (result) {
+                    //     result = 0;
+                    //     $screen.value = 0;
+                    // };
             console.log(currentNum);
             console.log(prevNum);
         }
