@@ -61,7 +61,7 @@ button:focus {
 }
 
 
-.number:active {
+.number:active, .decimal:active, .science:active {
   background-color: #797877;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px inset;
 }
@@ -74,4 +74,37 @@ button:focus {
 .clear:active, .plus-minus:active, .percent:active {
   background-color: #616161;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px inset;
+}
+
+.science {
+  display: none;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 500px) {
+  .science {
+    display: block;
+  }
+  
+  .calculator-keys {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .equal-sign {
+    grid-column: 8 / 9;
+  }
+
+  .decimal {
+    grid-column: 6 / 8;
+  }
+
+  #zero {
+    grid-column: 1 / 6;
+  }
+
+  #log {
+    grid-column: 3 / 5;
+  }
+
+
 }
