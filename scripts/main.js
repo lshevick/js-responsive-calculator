@@ -10,6 +10,7 @@
     const $percent = document.querySelector('.percent');
     const $equals = document.querySelector('.equal-sign');
     const $decimal = document.querySelector('.decimal');
+    const $scientific = document.querySelectorAll('.science');
 
     let i = 0;
     let currentNum = [];
@@ -21,37 +22,43 @@
 
     pushNumber();
     pushOperator();
+    calculate();
+    function calculate() {
 
-    $equals.onclick = function () {
-        calculation.push(currentNum);
-        calculation.flat();
-        console.log(calculation.flat());
-        let num1 = currentNum.join('');
-        let num2 = prevNum.join('');
-        switch (operator) {
-            case '+':
-                result = parseFloat(num2) + parseFloat(num1);
-                break;
-            case '-':
-                result = parseFloat(num2) - parseFloat(num1);
-                break;
-            case '/':
-                result = parseFloat(num2) / parseFloat(num1);
-                break;
-            case '*':
-                result = parseFloat(num2) * parseFloat(num1);
-                break;
-            default:
-                result = prevNum;
+        $equals.onclick = function () {
+            calculation.push(currentNum);
+            calculation.flat();
+            console.log(calculation.flat());
+            let num1 = currentNum.join('');
+            let num2 = prevNum.join('');
+            switch (operator) {
+                case '+':
+                    result = parseFloat(num2) + parseFloat(num1);
+                    break;
+                case '-':
+                    result = parseFloat(num2) - parseFloat(num1);
+                    break;
+                case '/':
+                    result = parseFloat(num2) / parseFloat(num1);
+                    break;
+                case '*':
+                    result = parseFloat(num2) * parseFloat(num1);
+                    break;
+                case '^':
+                    result = parseFloat(num2) ** parseFloat(num1);
+                default:
+                    result = prevNum;
+            }
+            currentNum = [];
+            currentNum.push(result);
+            console.log(calculation);
+            console.log(result);
+            $screen.value = result;
+            prevNum = [];
+            calculation = [];
         }
-        currentNum = [];
-        currentNum.push(result);
-        console.log(calculation);
-        console.log(result);
-        $screen.value = result;
-        prevNum = [];
-        calculation = [];
     }
+
 
     function pushOperator() {
 
@@ -69,12 +76,14 @@
         for (let i = 0; i < $operators.length; i++) {
             $operators[i].onclick = () => {
                 if (!calculation.includes($operators[i].value)) {
-                operator = $operators[i].value;
-                prevNum = currentNum;
-                currentNum = [];
-                console.log('changed Nums!');
-                 calculation.push(prevNum, $operators[i].value);
-                console.log($operators[i].value, 'pushed to calc');
+                    operator = $operators[i].value;
+                    prevNum = currentNum;
+                    currentNum = [];
+                    console.log('changed Nums!');
+                    calculation.push(prevNum, $operators[i].value);
+                    console.log($operators[i].value, 'pushed to calc');
+                } else {
+                    calculate();
                 };
             }
         }
@@ -120,6 +129,59 @@
         $screen.value = currentNum;
         currentNum = Array.from(String(currentNum));
         console.log(currentNum);
+    }
+
+    for (let i = 0; i < $scientific.length; i++) {
+        $scientific[i].onclick = () => {
+            if (currentNum) {
+                switch ($scientific[i].value) {
+                    case 'square':
+                        $screen.value = (currentNum = Math.pow(currentNum, 2));
+                        break;
+                    case 'cube':
+                        $screen.value = (currentNum = Math.pow(currentNum, 3));
+                        break;
+                    case 'square-root':
+                        $screen.value = (currentNum = Math.sqrt(currentNum));
+                        break;
+                    case 'cube-root':
+                        $screen.value = (currentNum = Math.cbrt(currentNum));
+                        break;
+                    case 'log':
+                        $screen.value = (currentNum = Math.log(currentNum));
+                        break;
+                    case 'sin':
+                        $screen.value = (currentNum = Math.sin(currentNum));
+                        break;
+                    case 'cos':
+                        $screen.value = (currentNum = Math.cos(currentNum));
+                        break;
+                    case 'tan':
+                        $screen.value = (currentNum = Math.tan(currentNum));
+                        break;
+                    case 'sinh':
+                        $screen.value = (currentNum = Math.sinh(currentNum));
+                        break;
+                    case 'cosh':
+                        $screen.value = (currentNum = Math.cosh(currentNum));
+                        break;
+                    case 'tanh':
+                        $screen.value = (currentNum = Math.tanh(currentNum));
+                        break;
+                    case 'pi':
+                        $screen.value = 'π';
+                        currentNum.join(currentNum = ['3', '.', '141592653589793']);
+                        break;
+                    case 'euler':
+                        $screen.value = currentNum.join(currentNum = Array.from(Math.E));
+                        break;
+
+
+
+
+                }
+            }
+        }
     }
 
 
