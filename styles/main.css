@@ -77,13 +77,13 @@ button:focus {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px inset;
 }
 
-.science {
+.science, #arb {
   display: none;
   font-size: 1.5rem;
 }
 
 @media (min-width: 500px) {
-  .science {
+  .science, #arb {
     display: block;
   }
   

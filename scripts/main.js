@@ -32,31 +32,35 @@
             calculation.flat();
             console.log(calculation.flat());
             if (typeof currentNum !== "number") {
-                num1 = currentNum.join('');
+                num1 = parseFloat(currentNum.join(''));
             } else {
                 num1 = currentNum;
             }
             if (typeof prevNum !== 'number') {
-                num2 = prevNum.join('');
+                num2 = parseFloat(prevNum.join(''));
             } else {
                 num2 = prevNum;
             }
 
             switch (operator) {
                 case '+':
-                    result = parseFloat(num2) + parseFloat(num1);
+                    result = num2 + num1;
                     break;
                 case '-':
-                    result = parseFloat(num2) - parseFloat(num1);
+                    result = num2 - num1;
                     break;
                 case '/':
-                    result = parseFloat(num2) / parseFloat(num1);
+                    result = num2 / num1;
                     break;
                 case '*':
-                    result = parseFloat(num2) * parseFloat(num1);
+                    result = num2 * num1;
                     break;
                 case '^':
-                    result = parseFloat(num2) ** parseFloat(num1);
+                    result = num2 ** num1;
+                    break;
+                case '√':
+                    result = Math.pow(num2, 1/num1);
+                    break;
                 default:
                     result = prevNum;
             }
@@ -64,6 +68,7 @@
             currentNum.push(result);
             console.log(calculation);
             console.log(result);
+            console.log(currentNum);
             $screen.value = result;
             prevNum = [];
             calculation = [];
@@ -76,7 +81,7 @@
         $clear.onclick = () => {
             currentNum = [];
             prevNum = [];
-            result = [];
+            result = 0;
             calculation = [];
             $screen.value = 0;
             console.clear();
@@ -103,11 +108,14 @@
     function pushNumber() {
         for (let i = 0; i < $numbers.length; i++) {
             $numbers[i].onclick = () => {
-                (result) ? result = 0 : null;
-                currentNum.push($numbers[i].value);
-                $screen.value = currentNum.join('');
-                console.log(prevNum);
-                console.log(currentNum);
+                if (result) {
+                    result = 0;
+                    currentNum = [];
+                }
+                    currentNum.push($numbers[i].value);
+                    $screen.value = currentNum.join('');
+                    console.log(prevNum);
+                    console.log(currentNum);
             }
         }
     };
