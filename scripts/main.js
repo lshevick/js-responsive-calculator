@@ -122,4 +122,15 @@
         console.log(currentNum);
     }
 
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 500) {
+            $decimal.classList.add('btn-lg');
+            $equals.classList.add('btn-lg');
+        } else {
+            $decimal.classList.remove('btn-lg');
+            $equals.classList.remove('btn-lg');
+        }
+    })
+
 })();
