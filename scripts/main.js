@@ -26,11 +26,22 @@
     function calculate() {
 
         $equals.onclick = function () {
+            let num1;
+            let num2;
             calculation.push(currentNum);
             calculation.flat();
             console.log(calculation.flat());
-            let num1 = currentNum.join('');
-            let num2 = prevNum.join('');
+            if (typeof currentNum !== "number") {
+                num1 = currentNum.join('');
+            } else {
+                num1 = currentNum;
+            }
+            if (typeof prevNum !== 'number') {
+                num2 = prevNum.join('');
+            } else {
+                num2 = prevNum;
+            }
+
             switch (operator) {
                 case '+':
                     result = parseFloat(num2) + parseFloat(num1);
@@ -169,16 +180,13 @@
                         $screen.value = (currentNum = Math.tanh(currentNum));
                         break;
                     case 'pi':
-                        $screen.value = 'π';
-                        currentNum.join(currentNum = ['3', '.', '141592653589793']);
+                        // $screen.value = 'π';
+                        // currentNum.join(currentNum = ['3', '.', '141592653589793']);
+                        $screen.value = (currentNum = Math.PI);
                         break;
                     case 'euler':
-                        $screen.value = currentNum.join(currentNum = Array.from(Math.E));
+                        $screen.value = (currentNum = Math.E);
                         break;
-
-
-
-
                 }
             }
         }
