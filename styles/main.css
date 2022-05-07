@@ -61,7 +61,8 @@ button:focus {
 }
 
 
-.number:active, .decimal:active, .science:active, #arb {
+
+.number:active, .decimal:active, .science:active {
   background-color: #797877;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px inset;
 }
