@@ -11,21 +11,62 @@
     const $equals = document.querySelector('.equal-sign');
     const $decimal = document.querySelector('.decimal');
     const $scientific = document.querySelectorAll('.science');
+    const $memory = document.querySelectorAll('.mem');
 
-    let i = 0;
+    let memory = 0;
     let currentNum = [];
     let prevNum = [];
     let calculation = [];
     let result = 0;
     let operator;
 
-
+    pushMemory();
     pushNumber();
     pushOperator();
     calculate();
+
+
+    function pushMemory() {
+        for (let i = 0; i < $memory.length; i++) {
+                $memory[i].onclick = function() {
+                if (currentNum) {
+                    switch ($memory[i].value) {
+                        case 'mc':
+                            memory = [];
+                            break;
+                        case 'm+':
+                            if (memory === 0) {
+                                memory = parseFloat(currentNum);
+                            } else {
+                                memory += memory;
+                            }
+                            console.log(currentNum);
+                            console.log(memory);
+                            break;
+                        case 'mr':
+                            currentNum = memory;
+                            $screen.value = currentNum;
+                            console.log(memory);
+                            console.log(currentNum);
+                            break;
+                        case 'm-':
+                            if (memory) {
+                                memory -= memory;
+                            }
+                            $screen.value = memory;
+                            console.log(memory);
+                            break;
+                        default:
+                            return;
+                    }
+                }
+            }
+        }
+    }
+
     function calculate() {
 
-        $equals.onclick = function () {
+        $equals.onclick = function() {
             let num1;
             let num2;
             calculation.push(currentNum);
