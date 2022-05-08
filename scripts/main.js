@@ -70,8 +70,11 @@
             let num1;
             let num2;
             calculation.push(currentNum);
-            calculation.flat();
-            console.log(calculation.flat());
+            calculation = calculation.flat();
+            for (let i = 0; i < calculation.length; i++) {
+                alert(calculation[i]);
+            }
+            
             if (typeof currentNum !== "number") {
                 num1 = parseFloat(currentNum.join(''));
             } else {
@@ -107,9 +110,7 @@
             }
             currentNum = [];
             currentNum.push(result);
-            console.log(calculation);
-            console.log(result);
-            console.log(currentNum);
+            alert('=');
             $screen.value = result;
             prevNum = [];
             calculation = [];
@@ -126,7 +127,7 @@
             calculation = [];
             $screen.value = 0;
             console.clear();
-            console.log('Clean slate');
+            alert('C');
         }
 
 
@@ -136,12 +137,9 @@
                     operator = $operators[i].value;
                     prevNum = currentNum;
                     currentNum = [];
-                    console.log('changed Nums!');
                     calculation.push(prevNum, $operators[i].value);
-                    console.log($operators[i].value, 'pushed to calc');
-                } else {
-                    calculate();
-                };
+                    alert($operators[i].value);
+                }
             }
         }
     };
@@ -155,8 +153,7 @@
                 }
                     currentNum.push($numbers[i].value);
                     $screen.value = currentNum.join('');
-                    console.log(prevNum);
-                    console.log(currentNum);
+                    alert(currentNum);
             }
         }
     };
