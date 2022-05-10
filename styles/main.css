@@ -62,10 +62,10 @@ button:focus {
 
 .mem {
   grid-row: 1 / 1;
-  background-color: #6E6D6D;
+  background-color: #848281;
 }
 
-.number:active, .decimal:active, .science:active, #arb:active {
+.number:active, .decimal:active, .science:active, #arb:active, .mem:active {
   background-color: #797877;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px inset;
 }
