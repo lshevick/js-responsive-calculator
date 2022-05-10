@@ -71,10 +71,7 @@
             let num2;
             calculation.push(currentNum);
             calculation = calculation.flat();
-            for (let i = 0; i < calculation.length; i++) {
-                alert(calculation[i]);
-            }
-            
+           
             if (typeof currentNum !== "number") {
                 num1 = parseFloat(currentNum.join(''));
             } else {
@@ -110,7 +107,6 @@
             }
             currentNum = [];
             currentNum.push(result);
-            alert('=');
             $screen.value = result;
             prevNum = [];
             calculation = [];
@@ -127,7 +123,6 @@
             calculation = [];
             $screen.value = 0;
             console.clear();
-            alert('C');
         }
 
 
@@ -138,7 +133,6 @@
                     prevNum = currentNum;
                     currentNum = [];
                     calculation.push(prevNum, $operators[i].value);
-                    alert($operators[i].value);
                 }
             }
         }
@@ -153,7 +147,6 @@
                 }
                     currentNum.push($numbers[i].value);
                     $screen.value = currentNum.join('');
-                    alert(currentNum);
             }
         }
     };
